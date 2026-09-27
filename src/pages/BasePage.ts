@@ -7,13 +7,13 @@ export class BasePage {
 
     //why protected - it means the child of this basepage only this particular page;
 
-  protected readonly page: Page;
-   protected readonly logo: Locator;
-  protected readonly searchBox: Locator;
-   protected readonly searchIcon: Locator;
-    protected readonly footerLinks: Locator;
+     protected readonly page: Page;
+     protected readonly logo: Locator;
+     protected readonly searchBox: Locator;
+     protected readonly searchIcon: Locator;
+     protected readonly footerLinks: Locator;
      protected readonly currency: Locator;
-      protected readonly cartButton: Locator;
+     protected readonly cartButton: Locator;
 
 
     constructor(page:Page){
