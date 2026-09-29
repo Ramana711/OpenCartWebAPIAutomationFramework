@@ -3,6 +3,7 @@ import {CsvHelper} from '../src/utils/CsvHelper';
 import{test,expect} from '../src/fixtures/pagefixtures';
 import{Excelhelper} from '../src/utils/ExcelHelper';
 import{JsonHelper} from '../src/utils/JsonHelper';
+import { meta } from 'reporting-labs';
 
 //import { LoginPage } from '../src/pages/LoginPage';
 
@@ -14,7 +15,8 @@ test.beforeEach(async({loginPage, page})=>{
   //AAA
   test('login page title test', async ({loginPage} ) =>{
       //let pageTitle = await loginPage.getLoginPageTitle();
-      let pageTitle = await loginPage.getPageTitle();
+     meta({priority:'High', severity:'Medium'});
+     let pageTitle = await loginPage.getPageTitle();
      console.log('Login page title : ', pageTitle);
      expect(pageTitle).toBe('Account Login');
   
@@ -51,7 +53,6 @@ test.beforeEach(async({loginPage, page})=>{
          expect(await loginPage.isInvalidLogingErrorDisplayed()).toBeTruthy();
     }   
  });
-
 
 
   //pros:

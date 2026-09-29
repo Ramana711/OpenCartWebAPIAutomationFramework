@@ -8,11 +8,14 @@ node_modules/
 /playwright/.auth/
 /allure-report/
 /allure-results/
+reporting-labs.history.json
 #env files (confidentials):
 config/.env.* 
+!config/.env.example
 #build
 dist/
 #OS files
-.DS_store 
+.DS_store
+Thumbs.db
 
  

@@ -1,4 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
+import reportingLabs from './reporting-labs.config';
 
 import dotenv from 'dotenv';
 
@@ -24,23 +25,35 @@ export default defineConfig({
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
+  workers: process.env.CI ? 2 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
 
-  reporter: [
-    ['list'],   
-    ['html'],
+  reporter:process.env.CI
+   ? [
+    ['list'],
+     ['html', { outputFolder: "reports/html-report", open: "never" }],   
      ["allure-playwright", {
         outputFolder:"allure-results",
         suiteTitle:true,
-     }]
+     }],
+     ['reporting-labs', reportingLabs]
+  ]
+  :
+  [
+    ['list'],   
+    ['html', { outputFolder: "reports/html-report", open: "never" }],
+    ["allure-playwright", {
+        outputFolder:"allure-results",
+        suiteTitle:true,
+     }],
+      ['reporting-labs', reportingLabs]
   ],
   
   use: {
      // baseURL: 'http://localhost:3000',
      //baseURL: 'https://naveenautomationlabs.com/',
     baseURL:process.env.BASE_URL,
-    headless: false,
+    headless:!process.env.CI ? false: true,
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
   },
