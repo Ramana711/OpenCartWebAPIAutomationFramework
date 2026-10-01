@@ -17,11 +17,16 @@ export class ApiHelper {
         let response = await this.request.get(`${this.baseURL}${endPoint}`, {
             headers: headers
         });
-        console.log(await response.json(), response.status());
+
+        //the below will avoid calling twice : The main issue is that you call response.json() twice:
+        const body1 = await response.json();
+        //console.log(await response.json(), response.status());
+        console.log(body1,response.status());
         return {
             status: response.status(),
-            body: await response.json()
-        }
+            //body: await response.json()
+            body: body1
+        };
     }
 
 
