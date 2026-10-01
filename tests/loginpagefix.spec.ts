@@ -13,7 +13,7 @@ test.beforeEach(async({loginPage, page})=>{
   });
 
   //AAA
-  test('login page title test', async ({loginPage} ) =>{
+  test('@smoke login page title test', async ({loginPage} ) =>{
       //let pageTitle = await loginPage.getLoginPageTitle();
      meta({priority:'High', severity:'Medium'});
      let pageTitle = await loginPage.getPageTitle();
@@ -23,12 +23,12 @@ test.beforeEach(async({loginPage, page})=>{
   });
   
    
-  test('forgot password link exist test', async ({loginPage}) =>{
+  test('@regression forgot password link exist test', async ({loginPage}) =>{
     expect(await loginPage.isForgottenPwdLinkExist()).toBeTruthy();
      
   });
   
-  test('user is able to login to the app with valid credentials', async ({loginPage, homePage}) =>{
+  test('@regression user is able to login to the app with valid credentials', async ({loginPage, homePage}) =>{
   // we can comment these two as we have used them in before each
   //    loginPage = new LoginPage(page);
   //    await loginPage.goToLoginPage();
@@ -39,14 +39,14 @@ test.beforeEach(async({loginPage, page})=>{
 
   });
 
-  test('verify Register page', async({loginPage, page})=>{
+  test('@smoke verify Register page', async({loginPage, page})=>{
        await loginPage.clickRegister();
        expect(await page.title()).toBe('Register Account');
        //await page.pause();
 
   });
   //DD_0: using test data from fixtures:sequence run
- test(`login to app with invalid credentials with fixture data`, async({loginPage, testData})=>{
+ test(`@regression login to app with invalid credentials with fixture data`, async({loginPage, testData})=>{
   //console.log(testData.length);
     for (let row of testData ){
          await loginPage.doLogin(row.username, row.password);
@@ -62,7 +62,7 @@ test.beforeEach(async({loginPage, page})=>{
   // if you are coming from selenium TestNG background: data provider annotation and we have to do the mapping  between data provider and test
 let testCSVData = CsvHelper.readCsv('src/testdata/logindata.csv');
  for(let row of testCSVData) {
-   test(`login to app with invalid credentials with CSV data- ${row.username} - ${row.password}`, async({loginPage, homePage})=>{
+   test(`@regression login to app with invalid credentials with CSV data- ${row.username} - ${row.password}`, async({loginPage, homePage})=>{
          await loginPage.doLogin(row.username, row.password);
          expect(await loginPage.isInvalidLogingErrorDisplayed()).toBeTruthy();
  });
@@ -76,7 +76,7 @@ let testCSVData = CsvHelper.readCsv('src/testdata/logindata.csv');
 
 let testExcelData = Excelhelper.readExcel('src/testdata/opencarttestdata.xlsx','login');
  for(let row of testExcelData) {
-   test(`login to app with invalid credentials with Excel Data- ${row.username} - ${row.password}`, async({loginPage, homePage})=>{
+   test(`@regression login to app with invalid credentials with Excel Data- ${row.username} - ${row.password}`, async({loginPage, homePage})=>{
          await loginPage.doLogin(row.username, row.password);
          expect(await loginPage.isInvalidLogingErrorDisplayed()).toBeTruthy();
  });
@@ -90,7 +90,7 @@ let testExcelData = Excelhelper.readExcel('src/testdata/opencarttestdata.xlsx','
 
 let testJSONData = JsonHelper.readJson('src/testdata/logindata.json');
  for(let row of testJSONData) {
-   test(`login to app with invalid credentials with Json Data- ${row.username} - ${row.password}`, async({loginPage, homePage})=>{
+   test(`@regression login to app with invalid credentials with Json Data- ${row.username} - ${row.password}`, async({loginPage, homePage})=>{
          await loginPage.doLogin(row.username, row.password);
          expect(await loginPage.isInvalidLogingErrorDisplayed()).toBeTruthy();
  });
@@ -98,21 +98,21 @@ let testJSONData = JsonHelper.readJson('src/testdata/logindata.json');
 };
  //common features test:
    
- test('App logo exists on Login page', async({ basePage})=>{
+ test('@smoke App logo exists on Login page', async({ basePage})=>{
     expect(await basePage.isLogoVisible()).toBeTruthy();
     });
 
 
- test('Search box exists Login page', async({ basePage})=>{
+ test('@smoke Search box exists Login page', async({ basePage})=>{
     expect(await basePage.isSearchBoxVisible()).toBeTruthy();
     });
    
- test('Cart exists Login page', async({ basePage})=>{
+ test('@smoke Cart exists Login page', async({ basePage})=>{
     expect(await basePage.isCartButtonVisible()).toBeTruthy();
     });
    
   
- test('Footers count verification', async({ basePage})=>{
+ test('@smoke  Footers count verification', async({ basePage})=>{
     expect(await basePage.getPageFootersCount()).toBe(16);
     });
      

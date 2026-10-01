@@ -9,7 +9,7 @@ test.beforeEach(async({loginPage})=>{
 });
 
 
-test('home page title test', async({homePage})=>{
+test('@smoke home page title test', async({homePage})=>{
  let pageTitle=   await homePage.getHomePageTitle();
  console.log('home page title: ', pageTitle);
   expect(pageTitle).toBe('My Account');
@@ -17,12 +17,12 @@ test('home page title test', async({homePage})=>{
 });
 
 
-test('logout link exist test', async({homePage}) =>{
+test('@smoke logout link exist test', async({homePage}) =>{
    expect(await homePage.isLogoutLinkExist()).toBeTruthy();
 
 });
 
-test('home page headers exist test', async({homePage})=>{
+test('@regression home page headers exist test', async({homePage})=>{
     let allHeaders:string[] = await homePage.getHomePageHeaders();
     console.log('home page headers: ', allHeaders);
      expect.soft(allHeaders).toHaveLength(4);

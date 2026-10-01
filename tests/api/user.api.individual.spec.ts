@@ -28,7 +28,7 @@ async function createUser( apiHelper: any) {
 
 // POST--> UserID--> GET/userID--verify
 
-test('Create a user test', async({apiHelper})=>{
+test('@regression Create a user test', async({apiHelper})=>{
      // create a user:
        let userResponse = await createUser(apiHelper);
     
@@ -41,7 +41,7 @@ test('Create a user test', async({apiHelper})=>{
 
 //Test 2: Update a user test + verify: AAA
 // POST--> UserID--> GET/userID--PUT /user id --GET/Userid -->verify
-test('update a user test', async({apiHelper})=>{
+test('@regression update a user test', async({apiHelper})=>{
      // 1. create a user:
        let userResponse = await createUser(apiHelper);
      //2.  get a user id:
@@ -71,7 +71,7 @@ test('update a user test', async({apiHelper})=>{
 // to be continued
 //Test 3: Delete a user test + verify: AAA
 // POST--> UserID--> GET/userID--Delete /user id(204) --GET/Userid(404) -->verify
-test('Delete a user test', async({apiHelper})=>{
+test('@regression Delete a user test', async({apiHelper})=>{
      // 1. create a user:
        let userResponse = await createUser(apiHelper);
      //2.  get a user id:

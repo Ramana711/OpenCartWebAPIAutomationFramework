@@ -14,7 +14,7 @@ test.beforeEach(async({loginPage})=>{
 let productData = CsvHelper.readCsv('src/testdata/product.csv');
 for (let row of productData){
 
-test(`verify search results count - ${row.searchkey} - ${row.productname}`, async({homePage, searchResultsPage})=>{
+test(`@regression verify search results count - ${row.searchkey} - ${row.productname}`, async({homePage, searchResultsPage})=>{
   await homePage.doSearch(row.searchkey);
   let actResultCount = await searchResultsPage.getProductSearchResultsCount();
    console.log('Search Results Count: ', actResultCount);
@@ -26,7 +26,7 @@ test(`verify search results count - ${row.searchkey} - ${row.productname}`, asyn
 //AAA
 // DD_1-CSV
 for (let row of productData){
-test(`verify user is able to land on the product page - ${row.searchkey} - ${row.productname}`, async({homePage, searchResultsPage, page})=>{
+test(`@smoke verify user is able to land on the product page - ${row.searchkey} - ${row.productname}`, async({homePage, searchResultsPage, page})=>{
     await homePage.doSearch(row.searchkey);
     await searchResultsPage.selectProduct(row.productname);
     // As this will navigate to product info page and have not created page objects-- to get title, we need to use page in built obj
@@ -39,7 +39,7 @@ test(`verify user is able to land on the product page - ${row.searchkey} - ${row
 //DD_2 --Excel data
 let productExcelData = Excelhelper.readExcel('src/testdata/opencarttestdata.xlsx','product');
 for (let row of productExcelData){
-test(`verify user is able to land on the product page with Exceldata - ${row.searchkey} - ${row.productname}`, async({homePage, searchResultsPage, page})=>{
+test(`@regression verify user is able to land on the product page with Exceldata - ${row.searchkey} - ${row.productname}`, async({homePage, searchResultsPage, page})=>{
     await homePage.doSearch(row.searchkey);
     await searchResultsPage.selectProduct(row.productname);
     // As this will navigate to product info page and have not created page objects-- to get title, we need to use page in built obj

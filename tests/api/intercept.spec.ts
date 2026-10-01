@@ -44,7 +44,7 @@ test('mock search data api', async({page})=>{
      await page.pause();
 });
 
-test('mock search page with fake HTML', async({page})=>{
+test('@smoke mock search page with fake HTML', async({page})=>{
 
   await page.route('**/index.php?route=product/search&search=macbook', async(route)=>{
            await route.fulfill({

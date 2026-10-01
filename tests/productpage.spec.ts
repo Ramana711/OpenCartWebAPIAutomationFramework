@@ -12,7 +12,7 @@ test.beforeEach(async({loginPage})=>{
 
 let productData = CsvHelper.readCsv('src/testdata/product.csv');
 for (let row of productData){
-test(`verify product header- ${row.searchkey}- ${row.productname}`, async({homePage,searchResultsPage, productInfoPage, page})=>{
+test(`@smoke verify product header- ${row.searchkey}- ${row.productname}`, async({homePage,searchResultsPage, productInfoPage, page})=>{
     await homePage.doSearch(row.searchkey);
     await searchResultsPage.selectProduct(row.productname);
    expect(await productInfoPage.getProductHeader()).toBe(row.productname);
@@ -20,7 +20,7 @@ test(`verify product header- ${row.searchkey}- ${row.productname}`, async({homeP
 });
 
 //test('verify product images count', async({homePage,searchResultsPage, productInfoPage, page})=>{
-test(`verify product images count- ${row.searchkey}- ${row.productname}`, async({homePage,searchResultsPage, productInfoPage})=>{
+test(`@smoke verify product images count- ${row.searchkey}- ${row.productname}`, async({homePage,searchResultsPage, productInfoPage})=>{
     await homePage.doSearch(row.searchkey);
     await searchResultsPage.selectProduct(row.productname);
    expect(await productInfoPage.getproductImagesCount()).toBe(Number(row.imagescount));
@@ -29,7 +29,7 @@ test(`verify product images count- ${row.searchkey}- ${row.productname}`, async(
 
 };
 
-test('verify product information/data', async({homePage,searchResultsPage, productInfoPage, page})=>{
+test('@regression verify product information/data', async({homePage,searchResultsPage, productInfoPage, page})=>{
     await homePage.doSearch('macbook');
     await searchResultsPage.selectProduct('MacBook Pro');
     let actualProductInfoMap = await productInfoPage.getproductInfo();
@@ -46,4 +46,19 @@ test('verify product information/data', async({homePage,searchResultsPage, produ
     expect.soft(actualProductInfoMap.get('extaxprice')).toBe('$2,000.00');
 
      //await page.pause();
-})
+});
+
+
+ test('@smoke Search box exists Login page', async({ basePage})=>{
+    expect(await basePage.isSearchBoxVisible()).toBeTruthy();
+    });
+   
+ test('@smoke Cart exists Login page', async({ basePage})=>{
+    expect(await basePage.isCartButtonVisible()).toBeTruthy();
+    });
+   
+  
+ test('@smoke  Footers count verification', async({ basePage})=>{
+    expect(await basePage.getPageFootersCount()).toBe(16);
+    });
+     

@@ -15,7 +15,7 @@ let AUTH_HEADER = {
 test.describe.serial('running e2e go rest crud apis tests',()=>{
 
  //GET Test:
-    test('GET API- get all users', async({apiHelper})=>{
+    test('@smoke GET API- get all users', async({apiHelper})=>{
     let response = await apiHelper.get('/public/v2/users', AUTH_HEADER);
     expect(response.status).toBe(200);
     expect(response.body.length).toBeGreaterThan(0);
@@ -23,7 +23,7 @@ test.describe.serial('running e2e go rest crud apis tests',()=>{
     });
 
   //POST
-   test('POST API -create a user', async({apiHelper})=>{
+   test('@regression POST API -create a user', async({apiHelper})=>{
     let userData = {
      name: `Morgans_${Math.floor(Math.random()*10)}`,
      email: `Mspector_${Date.now()}@opencart.com`,
